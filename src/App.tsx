@@ -192,8 +192,8 @@ function App() {
 
   return (
     <div className="h-screen w-screen flex items-center justify-center p-4">
-      <div className="flex rounded-2xl border border-gray-300 w-full h-full overflow-hidden">
-        <div className="flex-grow border-r border-gray-300 overflow-y-auto">
+      <div className="flex flex-col lg:flex-row rounded-2xl border border-gray-300 w-full h-full overflow-hidden">
+        <div className="h-4/6 lg:h-full lg:flex-grow border-r border-gray-300 overflow-y-auto">
           {todos.length === 0 && (
             <div className="h-full w-full flex items-center justify-center">
               <p>No todos yet</p>
@@ -251,7 +251,7 @@ function App() {
             </ul>
           )}
         </div>
-        <div className="w-[32rem] flex flex-col bg-gray-100">
+        <div className="h-2/6 lg:h-full lg:w-[32rem] flex flex-col bg-gray-100">
           <div className="flex-grow flex flex-col gap-6 overflow-y-auto px-4 pt-4 pb-16">
             {messages
               .filter(
