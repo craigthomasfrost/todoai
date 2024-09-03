@@ -191,20 +191,20 @@ function App() {
   };
 
   return (
-    <div className="h-screen w-screen flex items-center justify-center">
-      <div className="flex gap-2 bg-gray-100 rounded-2xl border border-gray-200 p-2 h-[40rem]">
-        <div className="w-[32rem] p-4 bg-white rounded-xl border border-gray-200 overflow-y-auto">
+    <div className="h-screen w-screen flex items-center justify-center p-4">
+      <div className="flex rounded-2xl border border-gray-300 w-full h-full overflow-hidden">
+        <div className="flex-grow border-r border-gray-300 overflow-y-auto">
           {todos.length === 0 && (
             <div className="h-full w-full flex items-center justify-center">
               <p>No todos yet</p>
             </div>
           )}
           {todos.length > 0 && (
-            <ul className="flex flex-col gap-3">
+            <ul className="flex flex-col">
               {todos.map((todo) => (
                 <li
                   key={todo.id}
-                  className="bg-gray-100 rounded-lg px-2.5 py-2 flex flex-col gap-1"
+                  className="px-2.5 py-3 flex flex-col gap-1 border-b border-gray-300 hover:bg-gray-50"
                 >
                   <div className="flex items-center gap-2">
                     <span
@@ -251,8 +251,8 @@ function App() {
             </ul>
           )}
         </div>
-        <div className="w-[32rem] p-2 flex flex-col">
-          <div className="flex-grow flex flex-col gap-6 overflow-y-auto pb-16">
+        <div className="w-[32rem] flex flex-col bg-gray-100">
+          <div className="flex-grow flex flex-col gap-6 overflow-y-auto px-4 pt-4 pb-16">
             {messages
               .filter(
                 (message) =>
@@ -277,7 +277,7 @@ function App() {
             )}
           </div>
           <form
-            className="flex gap-2"
+            className="flex gap-2 p-4"
             onSubmit={(e) => {
               e.preventDefault();
               sendMessage();
