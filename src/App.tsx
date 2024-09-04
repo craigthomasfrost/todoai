@@ -192,11 +192,14 @@ function App() {
 
   return (
     <div className="h-screen w-screen flex items-center justify-center p-4">
-      <div className="flex flex-col lg:flex-row rounded-2xl border border-gray-300 w-full h-full overflow-hidden">
-        <div className="h-4/6 lg:h-full lg:flex-grow border-r border-gray-300 overflow-y-auto">
+      <div className="flex flex-col lg:flex-row rounded-2xl border border-gray-200 w-full h-full overflow-hidden">
+        <div className="h-4/6 lg:h-full lg:flex-grow border-b lg:border-b-0 lg:border-r border-gray-200 overflow-y-auto">
           {todos.length === 0 && (
             <div className="h-full w-full flex items-center justify-center">
-              <p>No todos yet</p>
+              <div>
+                <p>Create your first task</p>
+                <p className="text-gray-500">Chat with our AI assistant</p>
+              </div>
             </div>
           )}
           {todos.length > 0 && (
@@ -204,7 +207,7 @@ function App() {
               {todos.map((todo) => (
                 <li
                   key={todo.id}
-                  className="px-2.5 py-3 flex flex-col gap-1 border-b border-gray-300 hover:bg-gray-50"
+                  className="px-2.5 py-3 flex flex-col gap-1 border-b border-gray-200 hover:bg-gray-50"
                 >
                   <div className="flex items-center gap-2">
                     <span
@@ -251,7 +254,7 @@ function App() {
             </ul>
           )}
         </div>
-        <div className="h-2/6 lg:h-full lg:w-[32rem] flex flex-col bg-gray-100">
+        <div className="h-2/6 lg:h-full lg:w-[32rem] flex flex-col">
           <div className="flex-grow flex flex-col gap-6 overflow-y-auto px-4 pt-4 pb-16">
             {messages
               .filter(
@@ -263,7 +266,7 @@ function App() {
                 <div
                   key={index}
                   className={classNames("w-fit", {
-                    "ml-auto bg-white rounded-xl px-4 py-2 flex items-center max-w-[75%]":
+                    "ml-auto bg-gray-100 rounded-xl px-4 py-2 flex items-center max-w-[75%]":
                       message.role === "user",
                   })}
                 >
@@ -271,8 +274,10 @@ function App() {
                 </div>
               ))}
             {isLoading && (
-              <div className="flex items-center justify-center">
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-gray-900"></div>
+              <div className="flex items-center space-x-1">
+                <span className="w-1.5 h-1.5 bg-gray-400 rounded-full opacity-100 animate-pulse"></span>
+                <span className="w-1.5 h-1.5 bg-gray-400 rounded-full opacity-100 animate-pulse [animation-delay:333ms]"></span>
+                <span className="w-1.5 h-1.5 bg-gray-400 rounded-full opacity-100 animate-pulse [animation-delay:666ms]"></span>
               </div>
             )}
           </div>
@@ -287,8 +292,8 @@ function App() {
               type="text"
               value={chatInput}
               onChange={(e) => setChatInput(e.target.value)}
-              placeholder="What would you like help with?"
-              className="flex-grow h-10 rounded-full px-4"
+              placeholder="Ask for help with your tasks"
+              className="flex-grow h-10 rounded-full px-4 bg-gray-100"
             />
             <button
               type="submit"
