@@ -46,6 +46,10 @@ function App() {
       of the todo list in each interaction. Keep your responses to
       the user short and sweet, wihtout unnecessary details.`,
     },
+    {
+      role: "assistant",
+      content: "How can I help you with your tasks today?",
+    },
   ]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -277,9 +281,13 @@ function App() {
                   className={classNames("w-fit", {
                     "ml-auto bg-gray-100 rounded-xl px-4 py-2 flex items-center max-w-[75%]":
                       message.role === "user",
+                    "flex gap-2": message.role === "assistant",
                   })}
                 >
-                  {message.content}
+                  {message.role === "assistant" && (
+                    <span className="block h-2 w-2 bg-cyan-500 rounded-full flex-shrink-0 mt-2" />
+                  )}
+                  <span>{message.content}</span>
                 </div>
               ))}
             {isLoading && (
