@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import OpenAI from "openai";
 import { usePGlite } from "@electric-sql/pglite-react";
 import classNames from "classnames";
@@ -32,6 +32,7 @@ const openai = new OpenAI({
 });
 
 function App() {
+  const messagesEndRef = useRef<HTMLDivElement>(null);
   const [todos, setTodos] = useState<Todo[]>([]);
   const [chatInput, setChatInput] = useState("");
   const [messages, setMessages] = useState<Message[]>([
@@ -49,6 +50,10 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
 
   const db = usePGlite();
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   useEffect(() => {
     const initDb = async () => {
@@ -70,6 +75,10 @@ function App() {
     };
     initDb();
   }, [db]);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   const sendMessage = async () => {
     if (chatInput.trim() === "") return;
@@ -280,6 +289,7 @@ function App() {
                 <span className="w-1.5 h-1.5 bg-gray-400 rounded-full opacity-100 animate-pulse [animation-delay:666ms]"></span>
               </div>
             )}
+            <div ref={messagesEndRef} />
           </div>
           <form
             className="flex gap-2 p-4"
