@@ -122,7 +122,7 @@ function App() {
 
       try {
         const response = await openai.chat.completions.create({
-          model: "gpt-4-0613",
+          model: "gpt-4o-mini",
           messages: [
             ...newMessages,
             todoContextMessage,
